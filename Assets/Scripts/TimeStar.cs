@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TimeStar : MonoBehaviour
 {
-    public float moveSpeed = 6f;
+    public float moveSpeed = 8f;
     public float destroyX = -20f;
 
     void Update()

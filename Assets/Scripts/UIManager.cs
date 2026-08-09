@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
 
     public void PauseGame()
     {
+        Debug.Log("PauseGame called");
         paused = true;
         settingsPanel.SetActive(true);
         Time.timeScale = 0f;

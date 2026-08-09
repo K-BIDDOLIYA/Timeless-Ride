@@ -2,20 +2,24 @@ using UnityEngine;
 
 public class StartButton : MonoBehaviour
 {
-    [Header("UI")]
+    [Header("References")]
     public GameObject startButton;
     public GameObject startText;
-
-    [Header("Game Manager")]
     public GameManager gameManager;
 
     void Start()
     {
-        // Pause the game initially
         Time.timeScale = 0f;
+        gameManager.counting = false;
 
-        // Show the start UI
-        startButton.SetActive(true);
+        if (startButton != null)
+        {
+            gameObject.SetActive(true);
+
+            UnityEngine.UI.Button btn = startButton.GetComponent<UnityEngine.UI.Button>();
+            if (btn != null)
+                btn.interactable = true;
+        }
 
         if (startText != null)
             startText.SetActive(true);
@@ -23,16 +27,22 @@ public class StartButton : MonoBehaviour
 
     public void StartGame()
     {
-        // Resume the game
-        Time.timeScale = 1f;
+        Debug.Log("Start button clicked!");
 
-        // Start the timer
-        gameManager.counting = true;
+        if (startButton != null)
+        {
+            UnityEngine.UI.Button btn = startButton.GetComponent<UnityEngine.UI.Button>();
+            if (btn != null)
+                btn.interactable = false;
 
-        // Hide the start UI
-        startButton.SetActive(false);
+            gameObject.SetActive(false);
+        }
 
         if (startText != null)
             startText.SetActive(false);
+
+        Time.timeScale = 1f;
+
+        gameManager.counting = true;
     }
 }
